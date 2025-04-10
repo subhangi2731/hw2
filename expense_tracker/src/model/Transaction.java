@@ -2,43 +2,50 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
+/**
+ * Immutable representation of a financial transaction.
+ * Each transaction includes an amount, a category, and a timestamp.
+ */
 public class Transaction {
 
-  public double amount;
-  public String category;
-  public String timestamp;
+    // Immutable transaction fields
+    private final double transactionAmount;
+    private final String transactionCategory;
+    private final String transactionTimestamp;
 
-  public Transaction(double amount, String category) {
-    this.amount = amount;
-    this.category = category;
-    this.timestamp = generateTimestamp();
-  }
+    /**
+     * Constructs a new Transaction object with the specified amount and category.
+     * A timestamp is generated at the time of creation.
+     *
+     * @param transactionAmount   the amount of the transaction
+     * @param transactionCategory the category of the transaction
+     */
+    public Transaction(double transactionAmount, String transactionCategory) {
+        this.transactionAmount = transactionAmount;
+        this.transactionCategory = transactionCategory;
+        this.transactionTimestamp = generateCurrentTimestamp();
+    }
 
-  public double getAmount() {
-    return amount;
-  }
+    public double getAmount() {
+        return transactionAmount;
+    }
 
-  public void setAmount(double amount) {
-    this.amount = amount;
-  }
+    public String getCategory() {
+        return transactionCategory;
+    }
 
-  public String getCategory() {
-    return category;
-  }
+    public String getTimestamp() {
+        return transactionTimestamp;
+    }
 
-  public void setCategory(String category) {
-    this.category = category; 
-  }
-  
-  public String getTimestamp() {
-    return timestamp;
-  }
-
-  private String generateTimestamp() {
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");  
-    return sdf.format(new Date());
-  }
-
+    /**
+     * Generates the current timestamp in "dd-MM-yyyy HH:mm" format.
+     *
+     * @return formatted timestamp string
+     */
+    private String generateCurrentTimestamp() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        return formatter.format(new Date());
+    }
 }
