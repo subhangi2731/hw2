@@ -86,7 +86,7 @@ public class ExpenseTrackerView extends JFrame {
     setVisible(true);
   }
 
-  public void refreshTransactionTable(List<Transaction> transactions) {
+  public void refreshTable(List<Transaction> transactions) {
     tableModel.setRowCount(0);
     int rowCount = 0;
     double totalAmount = 0;
@@ -104,7 +104,7 @@ public class ExpenseTrackerView extends JFrame {
     resetRowHighlighting();
   }
 
-  public JButton getAddTransactionButton() {
+  public JButton getAddTransactionBtn() {
     return addTransactionButton;
   }
 
@@ -133,16 +133,16 @@ public class ExpenseTrackerView extends JFrame {
     return categoryInputField.getText();
   }
 
-  public double getAmountFilterValue() {
+  public double getAmountField() {
     String text = amountFilterInputField.getText();
     return text.isEmpty() ? 0 : Double.parseDouble(text);
   }
 
-  public String getCategoryFilterValue() {
+  public String getCategoryField() {
     return categoryFilterInputField.getText();
   }
 
-  public void highlightFilteredTransactions(List<Transaction> highlightedTransactions) {
+  public void highlightTable(List<Transaction> highlightedTransactions) {
     Set<Integer> highlightRows = findMatchingRowIndices(highlightedTransactions);
 
     transactionTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
